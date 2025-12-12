@@ -1,0 +1,18 @@
+1.ax-samples-main\examples\ax620e\ax_yolov8_headdet.cc
+亲宝宝yolov8婴幼儿检测，正常v8流程编译
+
+2.ax-samples-main\examples\ax650\ax_deimv2_qrcode_batch.cc、ax_yolov5_qrcode_batch.cc、ax_yolov8_qrcode_batch.cc
+二维码yolov5/yolov8/deimv2批量检测+zbar识别
+ax650.cmake中添加zbar库：
+---target_link_libraries(${example_name} PRIVATE ${CMAKE_THREAD_LIBS_INIT} ax_interpreter ax_sys ax_ivps)
++++target_link_libraries(${example_name} PRIVATE ${CMAKE_THREAD_LIBS_INIT} ax_interpreter ax_sys ax_ivps zbar)
+
+3.ax-samples-main\examples\ax650\ax_yolo_uniow_open_vocabulary_steps.cc、ax_yolo_uniow_steps.cc
+yolo-uniow调试不同导出模型的中间产物，最终使用ax_yolo_world_open_vocabulary_steps.cc即可
+
+4.ax-samples-main\examples\ax650\ax_yolo11_basket.cc
+凌烟阁球类检测v11模型，批量检测保存检测结果方便map精度评估
+
+5.ax-samples-main\examples\ax650\ax_bge_steps.cc
+轻量级RAG特征提取网络bge模型，cmakeliste.txt中需要链接tokenizer部分：
+axera_example(ax_bge_steps ax_bge_steps.cc ${CMAKE_CURRENT_SOURCE_DIR}/../tokenizer/tokenizer.cpp)
